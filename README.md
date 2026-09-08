@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brain &amp; Mind Academy • DHANANJAYA 10 - Surface Areas and Volumes</title>
+
+  <!-- MathJax v3 Configuration & Loader -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    :root {
+      --navy-dark: #0c4a6e;
+      --brand-blue: #0284c7;
+      --accent-cyan: #0ea5e9;
+      --bg-tint: #f0f9ff;
+      --card-surf: #ffffff;
+      --border-accent: #7dd3fc;
+      --border-soft: #bae6fd;
+      --green-ok: #059669;
+      --green-surf: #d1fae5;
+      --red-fail: #dc2626;
+      --red-surf: #fee2e2;
+      --brand-gold: #f59e0b;
+      --gold-dark: #d97706;
+      --gold-surf: #fef3c7;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-tint);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(12, 74, 110, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      background: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title p {
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--border-accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: 1px solid var(--border-accent);
+      color: #fff;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    nav {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    nav button.active {
+      background: var(--bg-tint);
+      color: var(--brand-blue);
+      border-bottom: 3px solid var(--brand-blue);
+    }
+
+    main {
+      flex: 1;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    #loginGateView {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(12, 74, 110, 0.88);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 36px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.3);
+    }
+
+    .login-box h2 {
+      font-size: 1.45rem;
+      color: var(--navy-dark);
+      margin-bottom: 6px;
+    }
+
+    .login-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--brand-blue);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--navy-dark);
+    }
+
+    .theory-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .theory-card h3 {
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proof-section {
+      margin-top: 14px;
+      line-height: 1.75;
+    }
+
+    .proof-block {
+      margin: 10px 0;
+      padding: 12px 16px;
+      background: var(--bg-tint);
+      border-left: 4px solid var(--brand-blue);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* Solid Shapes Compendium Styles */
+    .solid-compendium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 18px;
+      margin: 16px 0;
+    }
+
+    .solid-card {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(12, 74, 110, 0.04);
+    }
+
+    .solid-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .solid-card-header h4 {
+      color: var(--navy-dark);
+      font-size: 1rem;
+    }
+
+    .solid-card-body {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .solid-svg-box {
+      flex: 0 0 110px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-tint);
+      border-radius: 6px;
+      padding: 8px;
+    }
+
+    .solid-formula-list {
+      flex: 1;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .solid-formula-list p {
+      margin-bottom: 4px;
+    }
+
+    .video-callout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .video-callout {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      padding: 14px 16px;
+      border-radius: 8px;
+      border-left: 4px solid var(--accent-cyan);
+    }
+
+    .video-callout a {
+      color: var(--brand-blue);
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 8px;
+      font-size: 0.88rem;
+    }
+
+    .sheet-grid {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 24px;
+    }
+
+    @media (max-width: 990px) {
+      .sheet-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .question-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .concept-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .concept-tag.surface {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+    }
+
+    .concept-tag.volume {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .svg-container {
+      display: flex;
+      justify-content: center;
+      margin: 18px 0;
+      padding: 16px;
+      background: var(--bg-tint);
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
+      overflow-x: auto;
+    }
+
+    .step-box {
+      margin-top: 16px;
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      background: #fff;
+      display: none;
+    }
+
+    .step-box.unlocked {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-box.success {
+      border-color: var(--green-ok);
+      background: var(--green-surf);
+    }
+
+    .step-text-wrap {
+      font-size: 1rem;
+      line-height: 1.8;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .inline-blank {
+      width: 150px;
+      padding: 6px 10px;
+      font-size: 0.95rem;
+      border: 2px dashed var(--brand-blue);
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+      color: var(--navy-dark);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .inline-blank:focus {
+      border-style: solid;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(14,165,233,0.2);
+    }
+
+    .inline-blank:disabled {
+      border: 1px solid var(--green-ok);
+      background: #fff;
+      color: var(--green-ok);
+      cursor: not-allowed;
+    }
+
+    .btn-verify {
+      background: var(--accent-cyan);
+      color: #fff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-verify:hover {
+      background: var(--brand-blue);
+    }
+
+    .nav-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .nav-btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-nav-action {
+      background: #f8fafc;
+      border: 1px solid var(--border-accent);
+      color: var(--navy-dark);
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-nav-action:hover:not(:disabled) {
+      background: var(--bg-tint);
+      border-color: var(--brand-blue);
+    }
+
+    .btn-nav-action:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-skip {
+      border-color: var(--brand-gold);
+      color: var(--gold-dark);
+      background: var(--gold-surf);
+    }
+
+    .btn-skip:hover {
+      background: #fde68a;
+    }
+
+    .palette-box {
+      background: #fff;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .palette-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      margin: 8px 0 12px 0;
+      padding: 6px 8px;
+      background: var(--bg-tint);
+      border-radius: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .palette-section-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 12px 0 6px 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-tint);
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      font-size: 0.82rem;
+      color: var(--navy-dark);
+    }
+
+    .palette-btn.active {
+      border: 2px solid var(--navy-dark) !important;
+      background: var(--border-accent);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .palette-btn.completed {
+      background: var(--green-ok) !important;
+      color: #fff !important;
+      border-color: var(--green-ok) !important;
+    }
+
+    .palette-btn.skipped {
+      background: var(--brand-gold) !important;
+      color: #fff !important;
+      border-color: var(--gold-dark) !important;
+    }
+
+    .tool-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 12px;
+    }
+
+    .tool-tabs button {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .tool-tabs button.active {
+      color: var(--brand-blue);
+      border-bottom: 2px solid var(--brand-blue);
+    }
+
+    .keypad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+    }
+
+    .keypad-btn {
+      padding: 8px 4px;
+      border: 1px solid var(--border-soft);
+      background: #fff;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .keypad-btn:hover {
+      background: var(--bg-tint);
+    }
+
+    #calcDisplay {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--border-soft);
+      border-radius: 4px;
+      font-size: 1rem;
+      text-align: right;
+      margin-bottom: 8px;
+      background: #f8fafc;
+    }
+
+    .hero-score-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .score-badge {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--navy-dark);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 1000;
+    }
+
+    @media print {
+      header, nav, .palette-box, #toolsPanel, .btn-primary, .btn-verify, #loginGateView, .nav-toolbar {
+        display: none !important;
+      }
+      body { background: #fff; }
+      main { width: 100%; max-width: 100%; padding: 0; }
+      .sheet-grid { display: block; }
+      .view { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand Header -->
+  <header>
+    <div class="brand-wrap">
+      <div class="logo-badge">
+        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
+          <path d="M 20 30 Q 50 10 80 30" stroke="#f59e0b" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 26 40 Q 50 22 74 40" stroke="#f59e0b" stroke-width="8" stroke-linecap="round"/>
+          <path d="M 32 50 Q 50 36 68 50" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+          <path d="M 18 80 Q 50 68 50 82 Q 50 68 82 80 L 82 52 Q 50 42 50 56 Q 50 42 18 52 Z" fill="#ffffff" stroke="#334155" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-title">
+        <h1>Brain &amp; Mind Academy</h1>
+        <p>B&amp;M – The Experts • DHANANJAYA 10 (Surface Areas and Volumes)</p>
+      </div>
+    </div>
+    <div class="header-controls">
+      <div class="chip" id="timerChip">⏱️ 00:00</div>
+      <div class="chip" id="userPill">Roll No: Guest</div>
+      <button class="btn-icon" id="audioToggleBtn" title="Toggle Audio">🔊</button>
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <button class="tab-btn active" onclick="switchView('theoryView')">📖 Theory &amp; Strategy Guide</button>
+    <button class="tab-btn" onclick="switchView('sheetView')">✍️ Interactive Practice Sheet</button>
+    <button class="tab-btn" onclick="switchView('solutionsView')">📋 Complete Solutions</button>
+  </nav>
+
+  <!-- Login Gate Modal -->
+  <div id="loginGateView">
+    <div class="login-box">
+      <h2>DHANANJAYA 10 Portal</h2>
+      <p>Class 10 CBSE Chapter Mastery — Surface Areas and Volumes</p>
+      <input type="text" id="rollInput" placeholder="Enter Student ID / Roll No" />
+      <input type="password" id="passInput" placeholder="Passcode (Optional)" />
+      <button class="btn-primary" onclick="initDirectLogin()">Initialize Workspace</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- View 1: Theory & Strategy Guide -->
+    <div id="theoryView" class="view active">
+      <!-- Complete Solid Shapes Compendium -->
+      <div class="theory-card">
+        <h3>📐 Master Formula Compendium: Solid Shapes</h3>
+        <p>Comprehensive breakdown of dimensional parameters, lateral/curved surfaces (CSA), total surface areas (TSA), and cubic capacities (Volume) for standard three-dimensional geometric figures.</p>
+        
+        <div class="solid-compendium-grid">
+          <!-- 1. Cuboid -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>1. Cuboid (Rectangular Prism)</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Length \(l\), Width \(b\), Height \(h\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="70" viewBox="0 0 100 80">
+                  <polygon points="10,35 60,35 85,15 35,15" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+                  <polygon points="10,35 60,35 60,70 10,70" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/>
+                  <polygon points="60,35 85,15 85,50 60,70" fill="#7dd3fc" stroke="#0c4a6e" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Lateral Surface (LSA):</strong> \(2h(l + b)\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(2(lb + bh + hl)\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(l \times b \times h\)</p>
+                <p><strong>Diagonal (\(d\)):</strong> \(\sqrt{l^2 + b^2 + h^2}\)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Cube -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>2. Cube (Regular Hexahedron)</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Side / Edge length \(a\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="70" viewBox="0 0 100 80">
+                  <polygon points="15,35 55,35 75,15 35,15" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+                  <rect x="15" y="35" width="40" height="40" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/>
+                  <polygon points="55,35 75,15 75,55 55,75" fill="#7dd3fc" stroke="#0c4a6e" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Lateral Surface (LSA):</strong> \(4a^2\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(6a^2\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(a^3\)</p>
+                <p><strong>Diagonal (\(d\)):</strong> \(a\sqrt{3}\)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Cylinder -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>3. Right Circular Cylinder</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Radius \(r\), Height \(h\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="75" viewBox="0 0 100 90">
+                  <ellipse cx="50" cy="20" rx="30" ry="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+                  <rect x="20" y="20" width="60" height="50" fill="#bae6fd" opacity="0.6"/>
+                  <line x1="20" y1="20" x2="20" y2="70" stroke="#0c4a6e" stroke-width="2"/>
+                  <line x1="80" y1="20" x2="80" y2="70" stroke="#0c4a6e" stroke-width="2"/>
+                  <ellipse cx="50" cy="70" rx="30" ry="10" fill="none" stroke="#0c4a6e" stroke-width="2"/>
+                  <line x1="50" y1="20" x2="50" y2="70" stroke="#94a3b8" stroke-dasharray="2"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Curved Surface (CSA):</strong> \(2\pi rh\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(2\pi r(r + h)\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(\pi r^2 h\)</p>
+                <p><strong>End Cap Bases (2):</strong> \(2\pi r^2\)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Cone -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>4. Right Circular Cone</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Radius \(r\), Height \(h\), Slant \(l\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="75" viewBox="0 0 100 90">
+                  <ellipse cx="50" cy="70" rx="30" ry="10" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/>
+                  <polygon points="20,70 80,70 50,15" fill="#fef3c7" opacity="0.6"/>
+                  <line x1="20" y1="70" x2="50" y2="15" stroke="#0c4a6e" stroke-width="2"/>
+                  <line x1="80" y1="70" x2="50" y2="15" stroke="#0c4a6e" stroke-width="2"/>
+                  <line x1="50" y1="15" x2="50" y2="70" stroke="#94a3b8" stroke-dasharray="2"/>
+                  <line x1="50" y1="70" x2="80" y2="70" stroke="#0284c7" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Slant Height (\(l\)):</strong> \(\sqrt{r^2 + h^2}\)</p>
+                <p><strong>Curved Surface (CSA):</strong> \(\pi r l\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(\pi r(r + l)\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(\frac{1}{3}\pi r^2 h\)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Sphere -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>5. Sphere</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Radius \(r\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="75" viewBox="0 0 100 90">
+                  <circle cx="50" cy="45" r="32" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/>
+                  <ellipse cx="50" cy="45" rx="32" ry="10" fill="none" stroke="#0284c7" stroke-dasharray="3"/>
+                  <line x1="50" y1="45" x2="82" y2="45" stroke="#0c4a6e" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Curved Surface (CSA):</strong> \(4\pi r^2\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(4\pi r^2\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(\frac{4}{3}\pi r^3\)</p>
+                <p><strong>Cross-Section:</strong> \(\pi r^2\)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Hemisphere -->
+          <div class="solid-card">
+            <div class="solid-card-header">
+              <h4>6. Hemisphere</h4>
+              <span style="font-size:0.75rem; color:var(--text-muted);">Radius \(r\)</span>
+            </div>
+            <div class="solid-card-body">
+              <div class="solid-svg-box">
+                <svg width="80" height="75" viewBox="0 0 100 90">
+                  <ellipse cx="50" cy="35" rx="30" ry="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5"/>
+                  <path d="M 20 35 A 30 30 0 0 0 80 35 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/>
+                  <line x1="50" y1="35" x2="80" y2="35" stroke="#0c4a6e" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="solid-formula-list">
+                <p><strong>Curved Surface (CSA):</strong> \(2\pi r^2\)</p>
+                <p><strong>Total Surface (TSA):</strong> \(3\pi r^2\)</p>
+                <p><strong>Volume (\(V\)):</strong> \(\frac{2}{3}\pi r^3\)</p>
+                <p><strong>Circular Rim Base:</strong> \(\pi r^2\)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conceptual Guidelines -->
+      <div class="theory-card">
+        <span class="concept-tag surface">Core Concept I</span>
+        <h3>1. Surface Area Principles for Combined Solids</h3>
+        <p>When two solids are joined, their common interfaces disappear inside the body[cite: 4]. The total surface area (TSA) of the composite solid is the sum of the curved/exposed surface areas of each component[cite: 4].</p>
+        <div class="proof-section">
+          <div class="proof-block">
+            <strong>Key Formulas for Combination Solids:</strong>
+            \begin{align*}
+              \text{Toy (Hemisphere + Cone):} \quad \text{TSA} &= \text{CSA of Hemisphere} + \text{CSA of Cone} = 2\pi r^2 + \pi rl \text{[cite: 4]} \\
+              \text{Capsule (Cylinder + 2 Hemispheres):} \quad \text{TSA} &= 2\pi rh + 2(2\pi r^2) = 2\pi rh + 4\pi r^2 \text{[cite: 4]} \\
+              \text{Cube with Hemispherical Surmount/Depression:} \quad \text{TSA} &= 6a^2 - \pi r^2 + 2\pi r^2 = 6a^2 + \pi r^2 \text{[cite: 4]}
+            \end{align*}
+          </div>
+        </div>
+      </div>
+
+      <div class="theory-card">
+        <span class="concept-tag volume">Core Concept II</span>
+        <h3>2. Volume Principles for Combined Solids</h3>
+        <p>Volume is an additive physical property[cite: 4]. The total volume of a combined solid is the sum of the volumes of its constituents[cite: 4]. For hollowed-out cavities, the remaining volume is found by subtraction[cite: 4].</p>
+        <div class="proof-section">
+          <div class="proof-block">
+            <strong>Key Formulas for Combined Volumes:</strong>
+            \begin{align*}
+              \text{Cone standing on Hemisphere:} \quad V &= \frac{1}{3}\pi r^2 h + \frac{2}{3}\pi r^3 = \frac{1}{3}\pi r^2 (h + 2r) \text{[cite: 4]} \\
+              \text{Cylinder with 2 Conical Ends:} \quad V &= \pi r^2 h_{\text{cyl}} + 2\left(\frac{1}{3}\pi r^2 h_{\text{cone}}\right) \text{[cite: 4]} \\
+              \text{Solid with Cavity Scooped Out:} \quad V_{\text{remaining}} &= V_{\text{outer}} - V_{\text{cavity}} \text{[cite: 4]}
+            \end{align*}
+          </div>
+        </div>
+      </div>
+
+      <div class="theory-card">
+        <h3>3. Curated Master Video Lectures (Khan Academy)</h3>
+        <div class="video-callout-grid">
+          <div class="video-callout">
+            <strong>Surface Area of Combination of Solids</strong>
+            <p>Principles of identifying exposed surfaces and calculating combined CSAs.</p>
+            <a href="https://www.khanacademy.org/math/ncert-class-10/xd6a17b08edbd2443:surface-areas-and-volumes-ncert-new/xd6a17b08edbd2443:surface-area-of-combination-of-solids/v/surface-area-of-combination-of-solids-surface-area-and-volume" target="_blank">Watch on Khan Academy →</a>
+          </div>
+          <div class="video-callout">
+            <strong>Surface Area Problem Types</strong>
+            <p>Step-by-step breakdown of surmounts, depressions, and composite vessels.</p>
+            <a href="https://www.khanacademy.org/math/ncert-class-10/xd6a17b08edbd2443:surface-areas-and-volumes-ncert-new/xd6a17b08edbd2443:surface-area-of-combination-of-solids/v/surface-area-of-combination-of-solids-problem-types" target="_blank">Watch on Khan Academy →</a>
+          </div>
+          <div class="video-callout">
+            <strong>Volume of Combination of Solids</strong>
+            <p>Additive and subtractive methods for finding capacities of complex solids.</p>
+            <a href="https://www.khanacademy.org/math/ncert-class-10/xd6a17b08edbd2443:surface-areas-and-volumes-ncert-new/xd6a17b08edbd2443:volume-of-combination-of-solids/v/volume-of-combination-of-solids" target="_blank">Watch on Khan Academy →</a>
+          </div>
+          <div class="video-callout">
+            <strong>Volume Problem Types</strong>
+            <p>Calculations involving water displacement, internal capacities, and industrial sheds.</p>
+            <a href="https://www.khanacademy.org/math/ncert-class-10/xd6a17b08edbd2443:surface-areas-and-volumes-ncert-new/xd6a17b08edbd2443:volume-of-combination-of-solids/v/volume-of-combination-solids-problem-types" target="_blank">Watch on Khan Academy →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 2: Interactive Practice Sheet -->
+    <div id="sheetView" class="view">
+      <div class="sheet-grid">
+        <div class="question-card" id="activeQuestionCard"></div>
+
+        <aside>
+          <div class="palette-box">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h4>Question Palette</h4>
+              <span style="font-size:0.8rem; color:var(--text-muted);" id="paletteCount">0 / 24</span>
+            </div>
+
+            <div class="palette-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#059669;"></span> Done</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span> Skipped</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#7dd3fc;"></span> Active</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f0f9ff; border:1px solid #bae6fd;"></span> Unseen</div>
+            </div>
+            
+            <div class="palette-section-title">Surface Areas of Solids (Q1 – Q13)</div>
+            <div class="palette-grid" id="paletteSurfaceGrid"></div>
+
+            <div class="palette-section-title">Volumes of Solids (Q14 – Q24)</div>
+            <div class="palette-grid" id="paletteVolumeGrid"></div>
+          </div>
+
+          <div class="palette-box" id="toolsPanel">
+            <div class="tool-tabs">
+              <button id="tabKeypadBtn" class="active" onclick="toggleTool('keypad')">Math Keypad</button>
+              <button id="tabCalcBtn" onclick="toggleTool('calc')">Calculator</button>
+            </div>
+
+            <div id="toolKeypad">
+              <div class="keypad-grid">
+                <button class="keypad-btn" onclick="insertSymbol('√')">√</button>
+                <button class="keypad-btn" onclick="insertSymbol('^2')">\(^2\)</button>
+                <button class="keypad-btn" onclick="insertSymbol('^3')">\(^3\)</button>
+                <button class="keypad-btn" onclick="insertSymbol('π')">π</button>
+                <button class="keypad-btn" onclick="insertSymbol('/')">/</button>
+                <button class="keypad-btn" onclick="insertSymbol('(')">(</button>
+                <button class="keypad-btn" onclick="insertSymbol(')')">)</button>
+                <button class="keypad-btn" onclick="insertSymbol('+')">+</button>
+                <button class="keypad-btn" onclick="insertSymbol('-')">-</button>
+                <button class="keypad-btn" onclick="insertSymbol('=')">=</button>
+                <button class="keypad-btn" onclick="insertSymbol('.')">.</button>
+                <button class="keypad-btn" onclick="insertSymbol(',')">,</button>
+              </div>
+            </div>
+
+            <div id="toolCalc" style="display: none;">
+              <input type="text" id="calcDisplay" readonly value="" />
+              <div class="keypad-grid">
+                <button class="keypad-btn" onclick="pressCalc('7')">7</button>
+                <button class="keypad-btn" onclick="pressCalc('8')">8</button>
+                <button class="keypad-btn" onclick="pressCalc('9')">9</button>
+                <button class="keypad-btn" onclick="pressCalc('/')">/</button>
+                <button class="keypad-btn" onclick="pressCalc('4')">4</button>
+                <button class="keypad-btn" onclick="pressCalc('5')">5</button>
+                <button class="keypad-btn" onclick="pressCalc('6')">6</button>
+                <button class="keypad-btn" onclick="pressCalc('*')">*</button>
+                <button class="keypad-btn" onclick="pressCalc('1')">1</button>
+                <button class="keypad-btn" onclick="pressCalc('2')">2</button>
+                <button class="keypad-btn" onclick="pressCalc('3')">3</button>
+                <button class="keypad-btn" onclick="pressCalc('-')">-</button>
+                <button class="keypad-btn" onclick="pressCalc('0')">0</button>
+                <button class="keypad-btn" onclick="pressCalc('.')">.</button>
+                <button class="keypad-btn" onclick="calcEval()">=</button>
+                <button class="keypad-btn" onclick="pressCalc('+')">+</button>
+                <button class="keypad-btn" style="grid-column: span 2;" onclick="calcClear()">C</button>
+                <button class="keypad-btn" style="grid-column: span 2;" onclick="calcSqrt()">√</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- View 3: Complete Solutions -->
+    <div id="solutionsView" class="view">
+      <div class="hero-score-card">
+        <h2>Chapter Performance Report</h2>
+        <div class="score-badge" id="scoreValue">0 / 24</div>
+        <p id="scoreSubtitle">Complete active questions to review your diagnostic analysis.</p>
+        <button class="btn-primary" style="margin-top: 14px; max-width: 200px;" onclick="window.print()">🖨️ Print Solutions</button>
+      </div>
+      <div id="completeSolutionsContainer"></div>
+    </div>
+  </main>
+
+  <div class="toast" id="toastMessage"></div>
+
+  <script>
+    // --- Master 24-Question Dataset: Surface Areas & Volumes ---
+    const CHAPTER_QUESTIONS = [
+      // ========== CONCEPT CLUSTER I: SURFACE AREAS OF COMBINATION OF SOLIDS (Q1 - Q13) ==========
+      {
+        id: 1,
+        concept: "surface",
+        source: "Example 1",
+        title: "Playing Top (Lattu) Surface Area",
+        prompt: "A playing top is shaped like a cone surmounted by a hemisphere. The entire top is \\(5\\text{ cm}\\) in height and the diameter is \\(3.5\\text{ cm}\\). Find the area to colour. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><path d="M 30 45 A 20 20 0 0 1 70 45 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><polygon points="30,45 70,45 50,90" fill="#fef3c7" stroke="#0c4a6e" stroke-width="2"/><line x1="15" y1="25" x2="15" y2="90" stroke="#94a3b8" stroke-dasharray="3"/><text x="2" y="60" font-size="6">5 cm</text><line x1="30" y1="40" x2="70" y2="40" stroke="#94a3b8"/><text x="40" y="38" font-size="5">3.5 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = \\frac{3.5}{2} = 1.75\\text{ cm}\\). Height of conical part \\(h = 5 - 1.75 =\\)", expected: "3.25", suffix: "cm.", explanation: "\\[h = 5 - 1.75 = 3.25\\text{ cm}\\]" },
+          { prefix: "Step 2: Slant height \\(l = \\sqrt{(1.75)^2 + (3.25)^2} \\approx\\)", expected: "3.7", suffix: "cm.", explanation: "\\[l = \\sqrt{3.0625 + 10.5625} = \\sqrt{13.625} \\approx 3.7\\text{ cm}\\]" },
+          { prefix: "Step 3: Total surface area \\(= 2\\pi r^2 + \\pi rl = \\pi r (2r + l) = \\frac{22}{7} \\times 1.75 \\times (3.5 + 3.7) =\\)", expected: "39.6", suffix: "cm² (approx).", explanation: "\\[\\text{TSA} = 5.5 \\times 7.2 = 39.6\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 2,
+        concept: "surface",
+        source: "Example 2",
+        title: "Decorative Block (Cube + Hemisphere)",
+        prompt: "A decorative block has a cubic base with edge \\(5\\text{ cm}\\), and a hemisphere on top with diameter \\(4.2\\text{ cm}\\). Find the total surface area. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="25" y="45" width="50" height="45" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 29 45 A 21 21 0 0 1 71 45 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="40" y="38" font-size="5">4.2 cm</text><text x="45" y="70" font-size="6">5 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: TSA of cube \\(= 6 \\times 5^2 =\\)", expected: "150", suffix: "cm².", explanation: "\\[\\text{Cube Area} = 6 \\times 25 = 150\\text{ cm}^2\\]" },
+          { prefix: "Step 2: Base area of hemisphere subtracted, curved surface added: Net change \\(= +\\pi r^2 = \\frac{22}{7} \\times (2.1)^2 =\\)", expected: "13.86", suffix: "cm².", explanation: "\\[\\text{Net Addition} = 2\\pi r^2 - \\pi r^2 = \\pi r^2 = \\frac{22}{7} \\times 4.41 = 13.86\\text{ cm}^2\\]" },
+          { prefix: "Step 3: Total surface area of block \\(= 150 + 13.86 =\\)", expected: "163.86", suffix: "cm².", explanation: "\\[\\text{TSA} = 150 + 13.86 = 163.86\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 3,
+        concept: "surface",
+        source: "Example 3",
+        title: "Wooden Toy Rocket Surface Area",
+        prompt: "A wooden rocket has a cone (base diameter \\(5\\text{ cm}\\), height \\(6\\text{ cm}\\)) mounted on a cylinder (base diameter \\(3\\text{ cm}\\), total rocket height \\(26\\text{ cm}\\)). Find the area painted orange (cone) and yellow (cylinder). (Use \\(\\pi = 3.14\\))",
+        svg: `<svg width="220" height="160" viewBox="0 0 100 120"><polygon points="35,35 65,35 50,10" fill="#fed7aa" stroke="#0c4a6e" stroke-width="2"/><rect x="42" y="35" width="16" height="70" fill="#fef08a" stroke="#0c4a6e" stroke-width="2"/><line x1="20" y1="10" x2="20" y2="105" stroke="#94a3b8" stroke-dasharray="2"/><text x="5" y="60" font-size="6">26 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Cone slant height \\(l = \\sqrt{(2.5)^2 + 6^2} = \\sqrt{42.25} =\\)", expected: "6.5", suffix: "cm.", explanation: "\\[l = \\sqrt{6.25 + 36} = 6.5\\text{ cm}\\]" },
+          { prefix: "Step 2: Area to be painted orange \\(= \\pi r l + \\pi r^2 - \\pi (r')^2 = 3.14 \\times [ (2.5 \\times 6.5) + (2.5)^2 - (1.5)^2 ] =\\)", expected: "63.585", suffix: "cm².", explanation: "\\[\\text{Orange Area} = 3.14 \\times (16.25 + 6.25 - 2.25) = 3.14 \\times 20.25 = 63.585\\text{ cm}^2\\]" },
+          { prefix: "Step 3: Cylinder height \\(= 26 - 6 = 20\\text{ cm}\\). Area to be painted yellow \\(= 2\\pi r' h' + \\pi (r')^2 = 3.14 \\times 1.5 \\times [ 2(20) + 1.5 ] =\\)", expected: "195.465", suffix: "cm².", explanation: "\\[\\text{Yellow Area} = 4.71 \\times 41.5 = 195.465\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 4,
+        concept: "surface",
+        source: "Example 4",
+        title: "Mayank's Cylindrical Bird-Bath",
+        prompt: "A bird-bath is shaped like a cylinder with a hemispherical depression at one end. The cylinder height is \\(1.45\\text{ m}\\) and radius is \\(30\\text{ cm}\\). Find the total surface area. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="30" y="25" width="40" height="65" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 30 25 A 20 20 0 0 0 70 25 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="40" y="18" font-size="5">r = 30 cm</text><text x="73" y="60" font-size="5">1.45 m</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Cylinder height \\(h = 145\\text{ cm}\\), \\(r = 30\\text{ cm}\\). Total surface area \\(= 2\\pi rh + 2\\pi r^2 = 2\\pi r(h + r) = 2 \\times \\frac{22}{7} \\times 30 \\times (145 + 30) =\\)", expected: "33000", suffix: "cm².", explanation: "\\[\\text{TSA} = \\frac{1320}{7} \\times 175 = 1320 \\times 25 = 33000\\text{ cm}^2\\]" },
+          { prefix: "Step 2: In square metres, total surface area \\(= \\frac{33000}{10000} =\\)", expected: "3.3", suffix: "m².", explanation: "\\[\\text{Area in m}^2 = \\frac{33000}{10000} = 3.3\\text{ m}^2\\]" }
+        ]
+      },
+      {
+        id: 5,
+        concept: "surface",
+        source: "Exercise 12.1 Q1",
+        title: "Two Cubes Joined End to End",
+        prompt: "Two cubes each of volume \\(64\\text{ cm}^3\\) are joined end to end. Find the surface area of the resulting cuboid.",
+        svg: `<svg width="220" height="140" viewBox="0 0 100 70"><rect x="15" y="20" width="35" height="35" fill="#f8fafc" stroke="#0c4a6e" stroke-width="1.5"/><rect x="50" y="20" width="35" height="35" fill="#f8fafc" stroke="#0c4a6e" stroke-width="1.5"/><text x="25" y="40" font-size="5">64 cm³</text><text x="60" y="40" font-size="5">64 cm³</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Edge of each cube \\(a = \\sqrt[3]{64} =\\)", expected: "4", suffix: "cm.", explanation: "\\[a = 4\\text{ cm}\\]" },
+          { prefix: "Step 2: Cuboid dimensions are \\(l = 8\\text{ cm}\\), \\(b = 4\\text{ cm}\\), \\(h = 4\\text{ cm}\\). Surface area \\(= 2(lb + bh + hl) = 2(32 + 16 + 32) =\\)", expected: "160", suffix: "cm².", explanation: "\\[\\text{Area} = 2(80) = 160\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 6,
+        concept: "surface",
+        source: "Exercise 12.1 Q2",
+        title: "Hollow Cylinder on Hollow Hemisphere",
+        prompt: "A vessel is in the form of a hollow hemisphere mounted by a hollow cylinder. The diameter of the hemisphere is \\(14\\text{ cm}\\) and total height of the vessel is \\(13\\text{ cm}\\). Find the inner surface area.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><path d="M 25 50 A 25 25 0 0 0 75 50 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><rect x="25" y="20" width="50" height="30" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><text x="40" y="40" font-size="5">14 cm</text><line x1="85" y1="20" x2="85" y2="75" stroke="#94a3b8" stroke-dasharray="2"/><text x="88" y="50" font-size="5">13 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = 7\\text{ cm}\\). Height of cylindrical part \\(h = 13 - 7 =\\)", expected: "6", suffix: "cm.", explanation: "\\[h = 13 - 7 = 6\\text{ cm}\\]" },
+          { prefix: "Step 2: Inner surface area \\(= 2\\pi r h + 2\\pi r^2 = 2\\pi r(h + r) = 2 \\times \\frac{22}{7} \\times 7 \\times (6 + 7) =\\)", expected: "572", suffix: "cm².", explanation: "\\[\\text{Area} = 44 \\times 13 = 572\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 7,
+        concept: "surface",
+        source: "Exercise 12.1 Q3",
+        title: "Toy: Cone Mounted on Hemisphere",
+        prompt: "A toy is in the form of a cone of radius \\(3.5\\text{ cm}\\) mounted on a hemisphere of the same radius. The total height of the toy is \\(15.5\\text{ cm}\\). Find the total surface area of the toy.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><path d="M 30 45 A 20 20 0 0 0 70 45 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><polygon points="30,45 70,45 50,15" fill="#fef3c7" stroke="#0c4a6e" stroke-width="2"/><text x="42" y="55" font-size="5">3.5 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Height of cone \\(h = 15.5 - 3.5 = 12\\text{ cm}\\). Slant height \\(l = \\sqrt{(3.5)^2 + 12^2} = \\sqrt{12.25 + 144} =\\)", expected: "12.5", suffix: "cm.", explanation: "\\[l = \\sqrt{156.25} = 12.5\\text{ cm}\\]" },
+          { prefix: "Step 2: Total surface area \\(= \\pi r l + 2\\pi r^2 = \\frac{22}{7} \\times 3.5 \\times (12.5 + 2 \\times 3.5) = 11 \\times 19.5 =\\)", expected: "214.5", suffix: "cm².", explanation: "\\[\\text{TSA} = 11 \\times 19.5 = 214.5\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 8,
+        concept: "surface",
+        source: "Exercise 12.1 Q4",
+        title: "Cube Surmounted by a Hemisphere",
+        prompt: "A cubical block of side \\(7\\text{ cm}\\) is surmounted by a hemisphere. What is the greatest diameter the hemisphere can have? Find the surface area of the solid.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="25" y="40" width="50" height="50" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 25 40 A 25 25 0 0 1 75 40 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="45" y="70" font-size="6">7 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: The greatest diameter of the hemisphere is equal to the edge of the cube =", expected: "7", suffix: "cm.", explanation: "The diameter cannot exceed the side length of the square face, so diameter = 7 cm." },
+          { prefix: "Step 2: Surface area \\(= 6a^2 + \\pi r^2 = 6(49) + \\frac{22}{7} \\times (3.5)^2 = 294 + 38.5 =\\)", expected: "332.5", suffix: "cm².", explanation: "\\[\\text{Area} = 294 + 38.5 = 332.5\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 9,
+        concept: "surface",
+        source: "Exercise 12.1 Q5",
+        title: "Hemispherical Depression Cut from Cube",
+        prompt: "A hemispherical depression of diameter \\(l\\) is cut out from one face of a cubical wooden block of edge \\(l\\). Determine the surface area of the remaining solid.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="25" y="25" width="50" height="50" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 25 25 A 25 25 0 0 0 75 25 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="45" y="55" font-size="6">l</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Surface area \\(= 6l^2 - \\pi (l/2)^2 + 2\\pi (l/2)^2 = 6l^2 + \\frac{\\pi l^2}{4} = \\frac{l^2}{4}(\\pi + \\text{constant})\\). Value of the constant is", expected: "24", suffix: ".", explanation: "\\[\\text{Area} = \\frac{l^2}{4}(24 + \\pi)\\]" }
+        ]
+      },
+      {
+        id: 10,
+        concept: "surface",
+        source: "Exercise 12.1 Q6",
+        title: "Medicine Capsule Surface Area",
+        prompt: "A medicine capsule is in the shape of a cylinder with two hemispheres stuck to its ends. The entire length is \\(14\\text{ mm}\\) and diameter is \\(5\\text{ mm}\\). Find its surface area.",
+        svg: `<svg width="220" height="120" viewBox="0 0 120 70"><path d="M 30 20 A 15 15 0 0 0 30 50 L 90 50 A 15 15 0 0 0 90 20 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><line x1="30" y1="20" x2="30" y2="50" stroke="#94a3b8" stroke-dasharray="2"/><line x1="90" y1="20" x2="90" y2="50" stroke="#94a3b8" stroke-dasharray="2"/><text x="50" y="38" font-size="5">14 mm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = 2.5\\text{ mm}\\). Length of cylindrical part \\(h = 14 - 2(2.5) =\\)", expected: "9", suffix: "mm.", explanation: "\\[h = 14 - 5 = 9\\text{ mm}\\]" },
+          { prefix: "Step 2: Surface area \\(= 2\\pi rh + 4\\pi r^2 = 2\\pi r(h + 2r) = 2 \\times \\frac{22}{7} \\times 2.5 \\times (9 + 5) =\\)", expected: "220", suffix: "mm².", explanation: "\\[\\text{Area} = \\frac{110}{7} \\times 14 = 220\\text{ mm}^2\\]" }
+        ]
+      },
+      {
+        id: 11,
+        concept: "surface",
+        source: "Exercise 12.1 Q7",
+        title: "Circus Tent: Cylinder with Conical Top",
+        prompt: "A tent has a cylinder (height \\(2.1\\text{ m}\\), diameter \\(4\\text{ m}\\)) surmounted by a cone (slant height \\(2.8\\text{ m}\\)). Find the canvas area and cost at ₹500 per m².",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="25" y="45" width="50" height="40" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><polygon points="25,45 75,45 50,15" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="78" y="32" font-size="5">2.8 m</text><text x="78" y="65" font-size="5">2.1 m</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Area of canvas \\(= 2\\pi rh + \\pi rl = \\pi r(2h + l) = \\frac{22}{7} \\times 2 \\times [2(2.1) + 2.8] = \\frac{44}{7} \\times 7 =\\)", expected: "44", suffix: "m².", explanation: "\\[\\text{Area} = 44\\text{ m}^2\\]" },
+          { prefix: "Step 2: Cost of canvas \\(= 44 \\times 500 =\\)", expected: "22000", suffix: "rupees.", explanation: "\\[\\text{Cost} = 44 \\times 500 = 22000\\text{ rupees}\\]" }
+        ]
+      },
+      {
+        id: 12,
+        concept: "surface",
+        source: "Exercise 12.1 Q8",
+        title: "Solid Cylinder with Conical Cavity Hollowed Out",
+        prompt: "From a solid cylinder (height \\(2.4\\text{ cm}\\), diameter \\(1.4\\text{ cm}\\)), a conical cavity of same height and diameter is hollowed out. Find the total surface area to nearest cm².",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="35" y="20" width="30" height="65" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><polygon points="35,20 65,20 50,85" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="70" y="55" font-size="5">2.4 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = 0.7\\text{ cm}\\). Slant height \\(l = \\sqrt{(0.7)^2 + (2.4)^2} = \\sqrt{0.49 + 5.76} =\\)", expected: "2.5", suffix: "cm.", explanation: "\\[l = \\sqrt{6.25} = 2.5\\text{ cm}\\]" },
+          { prefix: "Step 2: Total surface area \\(= 2\\pi rh + \\pi r^2 + \\pi rl = \\pi r(2h + r + l) = \\frac{22}{7} \\times 0.7 \\times [4.8 + 0.7 + 2.5] = 2.2 \\times 8.0 = 17.6\\text{ cm}^2\\). Rounded to nearest cm², area is", expected: "18", suffix: "cm².", explanation: "\\[17.6\\text{ rounds to } 18\\text{ cm}^2\\]" }
+        ]
+      },
+      {
+        id: 13,
+        concept: "surface",
+        source: "Exercise 12.1 Q9",
+        title: "Wooden Article: Cylinder Scooped at Both Ends",
+        prompt: "A wooden article is made by scooping out a hemisphere from each end of a solid cylinder of height \\(10\\text{ cm}\\) and base radius \\(3.5\\text{ cm}\\). Find the total surface area.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="35" y="20" width="30" height="60" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 35 20 A 15 15 0 0 0 65 20 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><path d="M 35 80 A 15 15 0 0 1 65 80 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="70" y="50" font-size="5">10 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Total surface area \\(= 2\\pi rh + 2(2\\pi r^2) = 2\\pi r(h + 2r) = 2 \\times \\frac{22}{7} \\times 3.5 \\times (10 + 7) = 22 \\times 17 =\\)", expected: "374", suffix: "cm².", explanation: "\\[\\text{TSA} = 22 \\times 17 = 374\\text{ cm}^2\\]" }
+        ]
+      },
+
+      // ========== CONCEPT CLUSTER II: VOLUMES OF COMBINATION OF SOLIDS (Q14 - Q24) ==========
+      {
+        id: 14,
+        concept: "volume",
+        source: "Example 5",
+        title: "Industrial Shed (Cuboid + Half Cylinder)",
+        prompt: "A shed is a cuboid (base \\(7\\text{ m} \\times 15\\text{ m}\\), height \\(8\\text{ m}\\)) surmounted by a half cylinder. If machinery occupies \\(300\\text{ m}^3\\) and 20 workers occupy \\(0.08\\text{ m}^3\\) each, find the air volume inside. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="25" y="45" width="50" height="40" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 25 45 A 25 25 0 0 1 75 45 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="45" y="70" font-size="5">7 × 15</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume of cuboid \\(= 15 \\times 7 \\times 8 = 840\\text{ m}^3\\). Volume of half cylinder \\(= \\frac{1}{2} \\times \\frac{22}{7} \\times \\left(\\frac{7}{2}\\right)^2 \\times 15 = 288.75\\text{ m}^3\\). Total capacity \\(= 840 + 288.75 =\\)", expected: "1128.75", suffix: "m³.", explanation: "\\[V_{\\text{total}} = 840 + 288.75 = 1128.75\\text{ m}^3\\]" },
+          { prefix: "Step 2: Total space occupied by machinery and workers \\(= 300 + (20 \\times 0.08) = 301.6\\text{ m}^3\\). Actual air volume \\(= 1128.75 - 301.6 =\\)", expected: "827.15", suffix: "m³.", explanation: "\\[V_{\\text{air}} = 1128.75 - 301.6 = 827.15\\text{ m}^3\\]" }
+        ]
+      },
+      {
+        id: 15,
+        concept: "volume",
+        source: "Example 6",
+        title: "Juice Glass with Hemispherical Raised Bottom",
+        prompt: "A cylindrical glass of inner diameter \\(5\\text{ cm}\\) and height \\(10\\text{ cm}\\) has a raised hemispherical bottom. Find its apparent and actual capacity. (Use \\(\\pi = 3.14\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="35" y="20" width="30" height="60" fill="#f8fafc" stroke="#0c4a6e" stroke-width="2"/><path d="M 35 80 A 15 15 0 0 1 65 80 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="42" y="50" font-size="5">10 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Apparent capacity \\(= \\pi r^2 h = 3.14 \\times (2.5)^2 \\times 10 =\\)", expected: "196.25", suffix: "cm³.", explanation: "\\[V_{\\text{apparent}} = 3.14 \\times 6.25 \\times 10 = 196.25\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Volume of hemispherical bump \\(= \\frac{2}{3}\\pi r^3 = \\frac{2}{3} \\times 3.14 \\times (2.5)^3 \\approx 32.71\\text{ cm}^3\\). Actual capacity \\(= 196.25 - 32.71 =\\)", expected: "163.54", suffix: "cm³.", explanation: "\\[V_{\\text{actual}} = 196.25 - 32.71 = 163.54\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 16,
+        concept: "volume",
+        source: "Example 7",
+        title: "Toy in Circumscribing Cylinder",
+        prompt: "A solid toy is a hemisphere surmounted by a cone of height \\(2\\text{ cm}\\) and base diameter \\(4\\text{ cm}\\). Find the toy's volume. If a right circular cylinder circumscribes it, find the difference in volumes. (Use \\(\\pi = 3.14\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="30" y="25" width="40" height="50" fill="none" stroke="#94a3b8" stroke-dasharray="2"/><path d="M 30 50 A 20 20 0 0 0 70 50 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="1.5"/><polygon points="30,50 70,50 50,25" fill="#fef3c7" stroke="#0c4a6e" stroke-width="1.5"/></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume of toy \\(= \\frac{2}{3}\\pi r^3 + \\frac{1}{3}\\pi r^2 h = \\frac{1}{3} \\times 3.14 \\times 4 \\times (4 + 2) =\\)", expected: "25.12", suffix: "cm³.", explanation: "\\[V_{\\text{toy}} = \\frac{1}{3} \\times 3.14 \\times 4 \\times 6 = 25.12\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Cylinder radius \\(= 2\\text{ cm}\\), height \\(= 4\\text{ cm}\\). Volume of cylinder \\(= 3.14 \\times 4 \\times 4 = 50.24\\text{ cm}^3\\). Difference in volumes \\(= 50.24 - 25.12 =\\)", expected: "25.12", suffix: "cm³.", explanation: "\\[V_{\\text{diff}} = 50.24 - 25.12 = 25.12\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 17,
+        concept: "volume",
+        source: "Exercise 12.2 Q1",
+        title: "Cone on Hemisphere (r = 1 cm, h = 1 cm)",
+        prompt: "A solid is in the shape of a cone standing on a hemisphere with radii equal to \\(1\\text{ cm}\\) and height of the cone equal to its radius. Find the volume of the solid in terms of \\(\\pi\\).",
+        svg: `<svg width="220" height="140" viewBox="0 0 100 80"><path d="M 35 40 A 15 15 0 0 0 65 40 Z" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><polygon points="35,40 65,40 50,20" fill="#fef3c7" stroke="#0c4a6e" stroke-width="2"/><text x="45" y="55" font-size="5">1 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume \\(= \\frac{2}{3}\\pi r^3 + \\frac{1}{3}\\pi r^2 h = \\frac{2}{3}\\pi (1)^3 + \\frac{1}{3}\\pi (1)^2(1) = \\left(\\frac{2}{3} + \\frac{1}{3}\\right)\\pi =\\)", expected: "π", suffix: "cm³.", explanation: "\\[V = \\pi\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 18,
+        concept: "volume",
+        source: "Exercise 12.2 Q2",
+        title: "Rachel's Engineering Model (Cylinder + 2 Cones)",
+        prompt: "A model has a cylinder with two cones attached at both ends. Total length is \\(12\\text{ cm}\\), diameter is \\(3\\text{ cm}\\), and each cone has height \\(2\\text{ cm}\\). Find the volume of air inside. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="140" viewBox="0 0 120 70"><polygon points="15,35 30,20 30,50" fill="#fef3c7" stroke="#0c4a6e" stroke-width="1.5"/><rect x="30" y="20" width="60" height="30" fill="#f8fafc" stroke="#0c4a6e" stroke-width="1.5"/><polygon points="105,35 90,20 90,50" fill="#fef3c7" stroke="#0c4a6e" stroke-width="1.5"/><text x="50" y="38" font-size="5">12 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = 1.5\\text{ cm}\\). Height of cylindrical portion \\(h_1 = 12 - 2(2) =\\)", expected: "8", suffix: "cm.", explanation: "\\[h_1 = 12 - 4 = 8\\text{ cm}\\]" },
+          { prefix: "Step 2: Total volume \\(= \\pi r^2 h_1 + 2\\left(\\frac{1}{3}\\pi r^2 h_2\\right) = \\pi r^2 \\left(8 + \\frac{4}{3}\\right) = \\frac{22}{7} \\times 2.25 \\times \\frac{28}{3} =\\)", expected: "66", suffix: "cm³.", explanation: "\\[V = 22 \\times 0.75 \\times 4 = 66\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 19,
+        concept: "volume",
+        source: "Exercise 12.2 Q3",
+        title: "Sugar Syrup in 45 Gulab Jamuns",
+        prompt: "A gulab jamun contains sugar syrup up to about 30% of its volume. Find how much syrup is found in 45 gulab jamuns, each shaped like a cylinder with hemispherical ends (total length \\(5\\text{ cm}\\), diameter \\(2.8\\text{ cm}\\)). (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="120" viewBox="0 0 100 60"><path d="M 25 20 A 10 10 0 0 0 25 40 L 75 40 A 10 10 0 0 0 75 20 Z" fill="#fed7aa" stroke="#0c4a6e" stroke-width="2"/><text x="45" y="32" font-size="5">5 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Radius \\(r = 1.4\\text{ cm}\\). Cylinder length \\(h = 5 - 2.8 = 2.2\\text{ cm}\\). Volume of 1 gulab jamun \\(= \\pi r^2 h + \\frac{4}{3}\\pi r^3 = \\frac{22}{7} \\times (1.4)^2 \\times \\left(2.2 + \\frac{4}{3} \\times 1.4\\right) \\approx\\)", expected: "25.05", suffix: "cm³.", explanation: "\\[V_1 = 6.16 \\times 4.067 = 25.05\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Volume of 45 gulab jamuns \\(= 45 \\times 25.05 \\approx 1127.25\\text{ cm}^3\\). Syrup quantity (30%) \\(= 0.30 \\times 1127.25 \\approx\\)", expected: "338", suffix: "cm³ (approx).", explanation: "\\[\\text{Syrup Volume} = 0.30 \\times 1127.28 \\approx 338\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 20,
+        concept: "volume",
+        source: "Exercise 12.2 Q4",
+        title: "Wooden Pen Stand with 4 Conical Depressions",
+        prompt: "A wooden pen stand is a cuboid (\\(15\\text{ cm} \\times 10\\text{ cm} \\times 3.5\\text{ cm}\\)) with four conical depressions (radius \\(0.5\\text{ cm}\\), depth \\(1.4\\text{ cm}\\)). Find the volume of wood.",
+        svg: `<svg width="220" height="140" viewBox="0 0 120 70"><rect x="15" y="20" width="90" height="35" fill="#fed7aa" stroke="#0c4a6e" stroke-width="2"/><polygon points="30,20 36,20 33,35" fill="#bae6fd"/><polygon points="50,20 56,20 53,35" fill="#bae6fd"/><polygon points="70,20 76,20 73,35" fill="#bae6fd"/><polygon points="90,20 96,20 93,35" fill="#bae6fd"/></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume of cuboid \\(= 15 \\times 10 \\times 3.5 =\\)", expected: "525", suffix: "cm³.", explanation: "\\[V_{\\text{cuboid}} = 525\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Volume of 4 conical depressions \\(= 4 \\times \\left[\\frac{1}{3} \\times \\frac{22}{7} \\times (0.5)^2 \\times 1.4\\right] = 4 \\times 0.367 =\\)", expected: "1.47", suffix: "cm³.", explanation: "\\[V_{\\text{depressions}} = 4 \\times \\frac{0.77}{2.1} \\approx 1.47\\text{ cm}^3\\]" },
+          { prefix: "Step 3: Volume of wood \\(= 525 - 1.47 =\\)", expected: "523.53", suffix: "cm³.", explanation: "\\[V_{\\text{wood}} = 525 - 1.47 = 523.53\\text{ cm}^3\\]" }
+        ]
+      },
+      {
+        id: 21,
+        concept: "volume",
+        source: "Exercise 12.2 Q5",
+        title: "Inverted Cone Filled with Water & Lead Shots",
+        prompt: "An inverted cone (height \\(8\\text{ cm}\\), radius \\(5\\text{ cm}\\)) is full of water. Dropping spherical lead shots (radius \\(0.5\\text{ cm}\\)) displaces \\(\\frac{1}{4}\\) of the water. Find the number of lead shots.",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><polygon points="25,25 75,25 50,85" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><circle cx="50" cy="50" r="4" fill="#64748b"/><circle cx="45" cy="60" r="4" fill="#64748b"/><circle cx="55" cy="62" r="4" fill="#64748b"/></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume of displaced water \\(= \\frac{1}{4} \\times \\left(\\frac{1}{3}\\pi r^2 h\\right) = \\frac{1}{12}\\pi (25)(8) =\\)", expected: "50π/3", suffix: "cm³.", explanation: "\\[V_{\\text{displaced}} = \\frac{200\\pi}{12} = \\frac{50\\pi}{3}\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Volume of 1 lead shot \\(= \\frac{4}{3}\\pi (0.5)^3 = \\frac{4}{3}\\pi \\left(\\frac{1}{8}\\right) = \\frac{\\pi}{6}\\text{ cm}^3\\). Number of lead shots \\(= \\frac{50\\pi/3}{\\pi/6} =\\)", expected: "100", suffix: ".", explanation: "\\[n = \\frac{50}{3} \\times 6 = 100\\]" }
+        ]
+      },
+      {
+        id: 22,
+        concept: "volume",
+        source: "Exercise 12.2 Q6",
+        title: "Mass of Solid Iron Pole (Two Cylinders)",
+        prompt: "A pole has a base cylinder (height \\(220\\text{ cm}\\), radius \\(12\\text{ cm}\\)) surmounted by a second cylinder (height \\(60\\text{ cm}\\), radius \\(8\\text{ cm}\\)). Find the mass if \\(1\\text{ cm}^3\\) of iron has \\(8\\text{ g}\\) mass. (Use \\(\\pi = 3.14\\))",
+        svg: `<svg width="220" height="160" viewBox="0 0 100 120"><rect x="35" y="45" width="30" height="65" fill="#94a3b8" stroke="#0c4a6e" stroke-width="2"/><rect x="42" y="15" width="16" height="30" fill="#94a3b8" stroke="#0c4a6e" stroke-width="2"/><text x="40" y="80" font-size="5">220 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Volume \\(= \\pi (12^2 \\times 220 + 8^2 \\times 60) = 3.14 \\times (31680 + 3840) = 3.14 \\times 35520 =\\)", expected: "111532.8", suffix: "cm³.", explanation: "\\[V = 3.14 \\times 35520 = 111532.8\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Mass in kg \\(= \\frac{111532.8 \\times 8}{1000} =\\)", expected: "892.26", suffix: "kg (approx).", explanation: "\\[\\text{Mass} = 892.2624\\text{ kg}\\]" }
+        ]
+      },
+      {
+        id: 23,
+        concept: "volume",
+        source: "Exercise 12.2 Q7",
+        title: "Volume of Water Left in Full Cylinder",
+        prompt: "A solid (cone of height \\(120\\text{ cm}\\), radius \\(60\\text{ cm}\\) on hemisphere of radius \\(60\\text{ cm}\\)) is submerged upright in a full cylinder (radius \\(60\\text{ cm}\\), height \\(180\\text{ cm}\\)). Find water volume left in m³. (Take \\(\\pi = \\frac{22}{7}\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><rect x="30" y="15" width="40" height="75" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><path d="M 30 65 A 20 20 0 0 0 70 65 Z" fill="#fef3c7" stroke="#0c4a6e" stroke-width="1.5"/><polygon points="30,65 70,65 50,30" fill="#fef3c7" stroke="#0c4a6e" stroke-width="1.5"/></svg>`,
+        steps: [
+          { prefix: "Step 1: Cylinder volume \\(= \\pi (60)^2(180) = 648000\\pi\\text{ cm}^3\\). Solid volume \\(= \\frac{2}{3}\\pi (60)^3 + \\frac{1}{3}\\pi (60)^2(120) = 288000\\pi\\text{ cm}^3\\). Water left \\(= 360000\\pi\\text{ cm}^3 = \\frac{22}{7} \\times 360000 =\\)", expected: "1131428.57", suffix: "cm³.", explanation: "\\[V_{\\text{left}} = \\frac{7920000}{7} \\approx 1131428.57\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Water left in cubic metres \\(= \\frac{1131428.57}{10^6} \\approx\\)", expected: "1.131", suffix: "m³.", explanation: "\\[V = 1.131\\text{ m}^3\\]" }
+        ]
+      },
+      {
+        id: 24,
+        concept: "volume",
+        source: "Exercise 12.2 Q8",
+        title: "Spherical Glass Vessel with Cylindrical Neck",
+        prompt: "A vessel has a cylindrical neck (length \\(8\\text{ cm}\\), diameter \\(2\\text{ cm}\\)) and spherical part (diameter \\(8.5\\text{ cm}\\)). A child measures volume as \\(345\\text{ cm}^3\\). Check if she is correct (yes/no). (Use \\(\\pi = 3.14\\))",
+        svg: `<svg width="220" height="150" viewBox="0 0 100 100"><circle cx="50" cy="65" r="25" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><rect x="46" y="15" width="8" height="26" fill="#bae6fd" stroke="#0c4a6e" stroke-width="2"/><text x="25" y="65" font-size="5">8.5 cm</text></svg>`,
+        steps: [
+          { prefix: "Step 1: Neck volume \\(= 3.14 \\times (1)^2 \\times 8 = 25.12\\text{ cm}^3\\). Sphere volume \\(= \\frac{4}{3} \\times 3.14 \\times (4.25)^3 \\approx 321.39\\text{ cm}^3\\). Total volume \\(= 25.12 + 321.39 =\\)", expected: "346.51", suffix: "cm³.", explanation: "\\[V = 25.12 + 321.39 = 346.51\\text{ cm}^3\\]" },
+          { prefix: "Step 2: Since actual volume is 346.51 cm³, is the child's measure of 345 cm³ correct?", expected: "no", suffix: "(yes/no)", explanation: "She is not correct; the correct volume is approximately 346.51 cm³." }
+        ]
+      }
+    ];
+
+    // --- State Variables ---
+    let currentAuthUser = null;
+    let currentQuestionIndex = 0;
+    let stepProgress = CHAPTER_QUESTIONS.map(() => ({ completedSteps: 0, status: "unseen" }));
+    let audioMuted = false;
+    let totalSeconds = 0;
+    let timerInterval = null;
+    let activeInputRef = null;
+
+    // --- Web Audio Synthesizer ---
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      },
+      playTone(freq, type, duration, delay = 0) {
+        if (audioMuted || !this.ctx) return;
+        setTimeout(() => {
+          try {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + duration);
+          } catch (e) {
+            console.warn("AudioContext error", e);
+          }
+        }, delay * 1000);
+      },
+      correct() {
+        this.init();
+        this.playTone(659.25, 'sine', 0.15, 0);
+        this.playTone(880.00, 'sine', 0.25, 0.12);
+      },
+      incorrect() {
+        this.init();
+        this.playTone(196.00, 'triangle', 0.2, 0);
+        this.playTone(146.83, 'triangle', 0.3, 0.12);
+      },
+      milestone() {
+        this.init();
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+          this.playTone(freq, 'sine', 0.25, idx * 0.1);
+        });
+      }
+    };
+
+    // --- Timer Engine ---
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        totalSeconds++;
+        const mins = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+        const secs = String(totalSeconds % 60).padStart(2, '0');
+        document.getElementById('timerChip').innerText = `⏱️ ${mins}:${secs}`;
+
+        if (totalSeconds === 1200 || (totalSeconds > 1200 && totalSeconds % 300 === 0)) {
+          AudioEngine.milestone();
+          showToast(`Pacing Check: ${Math.floor(totalSeconds / 60)} minutes elapsed.`);
+        }
+      }, 1000);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMessage');
+      t.innerText = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    // --- Authentication Flow ---
+    function initDirectLogin() {
+      const roll = document.getElementById('rollInput').value.trim() || 'Student-10';
+      currentAuthUser = roll;
+      sessionStorage.setItem('bm_user', roll);
+      document.getElementById('userPill').innerText = `Roll No: ${roll}`;
+      document.getElementById('loginGateView').style.display = 'none';
+      AudioEngine.init();
+      startTimer();
+      renderPalettes();
+      loadQuestion(0);
+      renderSolutions();
+    }
+
+    // --- Normalization Engine ---
+    function normalizeInput(str) {
+      return str.toLowerCase().replace(/\s+/g, '').replace(/−/g, '-');
+    }
+
+    function parseNumeric(val) {
+      if (val.includes('/')) {
+        const parts = val.split('/');
+        return parseFloat(parts[0]) / parseFloat(parts[1]);
+      }
+      return parseFloat(val);
+    }
+
+    function checkNumericalTolerance(val1, val2) {
+      if (val1.includes(',') && val2.includes(',')) {
+        const clean1 = val1.replace(/[()]/g, '').split(',');
+        const clean2 = val2.replace(/[()]/g, '').split(',');
+        if (clean1.length === clean2.length) {
+          return clean1.every((v, i) => checkNumericalTolerance(v, clean2[i]));
+        }
+      }
+      const n1 = parseNumeric(val1);
+      const n2 = parseNumeric(val2);
+      if (isNaN(n1) || isNaN(n2)) return false;
+      return Math.abs(n1 - n2) <= 0.05;
+    }
+
+    // --- View Navigation Controller ---
+    function switchView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+
+      const btnMap = { 'theoryView': 0, 'sheetView': 1, 'solutionsView': 2 };
+      document.querySelectorAll('nav button')[btnMap[viewId]].classList.add('active');
+
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    // --- Palette Renderer with Tri-State Colors ---
+    function renderPalettes() {
+      const surfGrid = document.getElementById('paletteSurfaceGrid');
+      const volGrid = document.getElementById('paletteVolumeGrid');
+      surfGrid.innerHTML = '';
+      volGrid.innerHTML = '';
+
+      let doneCount = 0;
+      CHAPTER_QUESTIONS.forEach((q, idx) => {
+        const state = stepProgress[idx];
+        if (state.status === "completed") doneCount++;
+
+        const btn = document.createElement('button');
+        let stateClass = '';
+        if (idx === currentQuestionIndex) {
+          stateClass = 'active';
+        } else if (state.status === "completed") {
+          stateClass = 'completed';
+        } else if (state.status === "skipped") {
+          stateClass = 'skipped';
+        }
+
+        btn.className = `palette-btn ${stateClass}`;
+        btn.innerText = idx + 1;
+        btn.title = `${q.source}: ${q.title}`;
+        btn.onclick = () => loadQuestion(idx);
+
+        if (q.concept === 'surface') {
+          surfGrid.appendChild(btn);
+        } else {
+          volGrid.appendChild(btn);
+        }
+      });
+      document.getElementById('paletteCount').innerText = `${doneCount} / ${CHAPTER_QUESTIONS.length}`;
+    }
+
+    // --- Question Stage Renderer ---
+    function loadQuestion(idx) {
+      currentQuestionIndex = idx;
+      renderPalettes();
+      const q = CHAPTER_QUESTIONS[idx];
+      const prog = stepProgress[idx];
+
+      let stepsHtml = '';
+      q.steps.forEach((st, sIdx) => {
+        const isUnlocked = sIdx <= prog.completedSteps;
+        const isPassed = sIdx < prog.completedSteps;
+
+        stepsHtml += `
+          <div class="step-box ${isUnlocked ? 'unlocked' : ''} ${isPassed ? 'success' : ''}" id="stepBox_${idx}_${sIdx}">
+            <div class="step-text-wrap">
+              <span>${st.prefix}</span>
+              <input type="text" class="inline-blank" id="stepInput_${idx}_${sIdx}" 
+                value="${isPassed ? st.expected : ''}" 
+                placeholder="enter answer"
+                ${isPassed ? 'disabled' : ''} 
+                onfocus="activeInputRef = this;" />
+              <span>${st.suffix}</span>
+              ${!isPassed ? `<button class="btn-verify" onclick="verifyStep(${idx}, ${sIdx})">Verify</button>` : `<span style="color: var(--green-ok); font-weight: bold; margin-left: 8px;">✓ Verified</span>`}
+            </div>
+          </div>
+        `;
+      });
+
+      const tagClass = q.concept === 'surface' ? 'surface' : 'volume';
+      const tagText = q.concept === 'surface' ? 'Concept I: Surface Areas' : 'Concept II: Volumes';
+
+      const prevDisabled = idx === 0 ? 'disabled' : '';
+      const nextDisabled = idx === CHAPTER_QUESTIONS.length - 1 ? 'disabled' : '';
+
+      const html = `
+        <span class="concept-tag ${tagClass}">${tagText}</span>
+        <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-left: 8px;">[${q.source}]</span>
+        <h2 style="color:var(--navy-dark); margin: 6px 0 10px 0;">Problem ${q.id}: ${q.title}</h2>
+        <p style="margin-top: 8px; line-height: 1.65;">${q.prompt}</p>
+        <div class="svg-container">${q.svg}</div>
+        <div id="stepsContainer">${stepsHtml}</div>
+
+        <!-- Action Toolbar -->
+        <div class="nav-toolbar">
+          <button class="btn-nav-action" onclick="navigateQuestion(-1)" ${prevDisabled}>
+            ⏮ Previous
+          </button>
+          <div class="nav-btn-group">
+            <button class="btn-nav-action btn-skip" onclick="skipQuestion()">
+              ⏭ Skip Question
+            </button>
+            <button class="btn-nav-action" onclick="navigateQuestion(1)" ${nextDisabled}>
+              Next ❯
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('activeQuestionCard').innerHTML = html;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    // --- Toolbar Handlers ---
+    function navigateQuestion(delta) {
+      const target = currentQuestionIndex + delta;
+      if (target >= 0 && target < CHAPTER_QUESTIONS.length) {
+        loadQuestion(target);
+      }
+    }
+
+    function skipQuestion() {
+      if (stepProgress[currentQuestionIndex].status !== "completed") {
+        stepProgress[currentQuestionIndex].status = "skipped";
+      }
+      showToast(`Question ${currentQuestionIndex + 1} marked as Skipped (Amber/Gold).`);
+      renderPalettes();
+      navigateQuestion(1);
+    }
+
+    // --- Verification Engine ---
+    function verifyStep(qIdx, sIdx) {
+      const inputEl = document.getElementById(`stepInput_${qIdx}_${sIdx}`);
+      const val = normalizeInput(inputEl.value);
+      const expected = normalizeInput(CHAPTER_QUESTIONS[qIdx].steps[sIdx].expected);
+
+      const isCorrect = (val === expected) || checkNumericalTolerance(val, expected);
+
+      if (isCorrect) {
+        AudioEngine.correct();
+        stepProgress[qIdx].completedSteps++;
+        if (stepProgress[qIdx].completedSteps >= CHAPTER_QUESTIONS[qIdx].steps.length) {
+          stepProgress[qIdx].status = "completed";
+          AudioEngine.milestone();
+          showToast(`Problem ${qIdx + 1} Fully Completed!`);
+        }
+        renderPalettes();
+        loadQuestion(qIdx);
+        renderSolutions();
+      } else {
+        AudioEngine.incorrect();
+        inputEl.style.borderColor = "var(--red-fail)";
+        showToast("Incorrect answer. Please recheck your calculations.");
+      }
+    }
+
+    // --- Solutions View Renderer ---
+    function renderSolutions() {
+      const container = document.getElementById('completeSolutionsContainer');
+      let completedCount = stepProgress.filter(p => p.status === "completed").length;
+      document.getElementById('scoreValue').innerText = `${completedCount} / ${CHAPTER_QUESTIONS.length}`;
+
+      let html = '';
+      let lastConcept = '';
+
+      CHAPTER_QUESTIONS.forEach((q) => {
+        if (q.concept !== lastConcept) {
+          lastConcept = q.concept;
+          const sectionHeader = q.concept === 'surface' 
+            ? 'Section A: Surface Areas of Combinations of Solids'
+            : 'Section B: Volumes of Combinations of Solids';
+          html += `<h2 style="color:var(--navy-dark); margin: 30px 0 14px 0; border-bottom: 2px solid var(--border-soft); padding-bottom: 6px;">${sectionHeader}</h2>`;
+        }
+
+        html += `
+          <div class="theory-card">
+            <span class="concept-tag ${q.concept === 'surface' ? 'surface' : 'volume'}">${q.concept === 'surface' ? 'Concept I' : 'Concept II'}</span>
+            <span style="font-size:0.8rem; font-weight:bold; color:var(--text-muted); margin-left:6px;">${q.source}</span>
+            <h3 style="margin-top:6px;">Problem ${q.id}: ${q.title}</h3>
+            <p>${q.prompt}</p>
+            <div class="svg-container" style="max-width: 280px; margin: 12px 0;">${q.svg}</div>
+            <div class="proof-section">
+              ${q.steps.map((st, sIdx) => `
+                <div class="proof-block">
+                  <strong>Step ${sIdx + 1}:</strong> ${st.prefix} <strong>[ ${st.expected} ]</strong> ${st.suffix}<br/>
+                  ${st.explanation}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    // --- Keypad & Calculator Controls ---
+    function toggleTool(tool) {
+      if (tool === 'keypad') {
+        document.getElementById('toolKeypad').style.display = 'block';
+        document.getElementById('toolCalc').style.display = 'none';
+        document.getElementById('tabKeypadBtn').classList.add('active');
+        document.getElementById('tabCalcBtn').classList.remove('active');
+      } else {
+        document.getElementById('toolKeypad').style.display = 'none';
+        document.getElementById('toolCalc').style.display = 'block';
+        document.getElementById('tabCalcBtn').classList.add('active');
+        document.getElementById('tabKeypadBtn').classList.remove('active');
+      }
+    }
+
+    function insertSymbol(sym) {
+      if (activeInputRef) {
+        activeInputRef.value += sym;
+        activeInputRef.focus();
+      }
+    }
+
+    function pressCalc(val) {
+      document.getElementById('calcDisplay').value += val;
+    }
+
+    function calcClear() {
+      document.getElementById('calcDisplay').value = '';
+    }
+
+    function calcEval() {
+      try {
+        const res = eval(document.getElementById('calcDisplay').value);
+        document.getElementById('calcDisplay').value = res;
+      } catch (e) {
+        document.getElementById('calcDisplay').value = 'Error';
+      }
+    }
+
+    function calcSqrt() {
+      try {
+        const val = parseFloat(document.getElementById('calcDisplay').value);
+        document.getElementById('calcDisplay').value = Math.sqrt(val);
+      } catch (e) {
+        document.getElementById('calcDisplay').value = 'Error';
+      }
+    }
+
+    document.getElementById('audioToggleBtn').onclick = () => {
+      audioMuted = !audioMuted;
+      document.getElementById('audioToggleBtn').innerText = audioMuted ? '🔇' : '🔊';
+    };
+  </script>
+</body>
+</html>
